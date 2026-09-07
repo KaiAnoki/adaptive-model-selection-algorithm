@@ -1,50 +1,34 @@
-# Adaptive Model Selection Algorithm
+# Adaptive model selection algorithm
 
-An adaptive decision-making algorithm designed to dynamically select the most appropriate model for a given input. This system is built for scalability and integration into multi-model AI environments such as intelligent assistants and LLM-based applications.
+A small Python reference implementation for routing requests among model profiles. It classifies a request with token-based signals, scores available models for quality, speed, and cost efficiency, then returns the selected model with the complete score breakdown.
 
----
+## What it demonstrates
 
-## Overview
+- Deterministic intent classification without external services
+- Configurable model profiles
+- Weighted model selection with explainable scores
+- Input validation and unit tests
+- A command-line interface that returns JSON
 
-Modern AI systems often rely on multiple models or tools, each optimized for different types of tasks. This project demonstrates an algorithmic approach to selecting the optimal model based on input characteristics and system design principles.
+## Run it
 
-The goal is to simulate how real-world AI systems:
-- process diverse inputs
-- choose efficient execution paths
-- optimize performance over time
+```bash
+python -m src.main "Write a Python API for inventory updates"
+```
 
----
+## Test it
 
-## Key Features
+```bash
+python -m pip install -e ".[dev]"
+pytest -q
+```
 
-- **Input Classification (O(n))**  
-  Classifies incoming queries based on content to determine intent.
+## Project layout
 
-- **Adaptive Model Selection**  
-  Uses a structured decision process to select the most suitable model.
+```text
+src/algorithm.py        routing policy and data models
+src/main.py             command-line entry point
+tests/test_algorithm.py unit tests
+```
 
-- **Modular Architecture**  
-  Designed to easily integrate additional models or decision layers.
-
-- **Scalable Design**  
-  Can be extended into larger systems such as AI agents or orchestration pipelines.
-
----
-
-## How It Works
-
-1. **Input Processing**  
-   The system receives a user query.
-
-2. **Classification**  
-   The query is analyzed to determine its intent (e.g., general, coding, reasoning).
-
-3. **Model Selection**  
-   A decision algorithm selects the most appropriate model.
-
-4. **Execution (Abstracted)**  
-   The selected model handles the request.
-
----
-
-## Project Structure
+This project intentionally uses a transparent rule-based policy. It does not claim to benchmark or call real language models.
